@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('synopsis')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->year('year');
-            $table->text('actors')->nullable();
-            $table->string('cover_image')->nullable();
+            $table->text('actors')->nullabel();
+            $table->string('cover_image')->nullabel();
             $table->timestamps();
         });
     }

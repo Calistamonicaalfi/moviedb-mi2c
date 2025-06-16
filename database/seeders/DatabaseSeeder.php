@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-       // $this->call(CategorySeeder::class);
-       // Movie::factory(50)->create();
+        $this->call(CategorySeeder::class);
+        // Movie::factory(50)->create();
     }
 }

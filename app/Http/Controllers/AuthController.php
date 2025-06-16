@@ -8,37 +8,36 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-    public function loginForm()
-    {
+    public function loginForm(){
         return view('login');
-
     }
+
     public function login(Request $request){
-        $credentials =  $request->validate(
+        $credentials = $request->validate(
             [
                 'email' => 'required|email',
                 'password' => 'required'
             ]
         );
-        if(Auth::attempt($credentials)){
 
+        if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/');
-        
+            return redirect('/')->with('success', 'Login Successfully, Welcome ' . Auth::user()->name);
         }
+
         return back()->withErrors([
             'email' => 'Email not found'
         ])->onlyInput('email');
-
     }
+
     public function logout(Request $request): RedirectResponse
-{
-    Auth::logout();
- 
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
-    return redirect('/');
-}
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
